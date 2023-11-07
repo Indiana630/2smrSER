@@ -26,3 +26,54 @@ subnet [IP de la red .0] netmask [MascaraSubred] {
 }
 
 #Repetir tantas subredes haya
+
+sudo -i
+apt install ifupdown
+apt install isc-dhcp-server
+cp /etc/default/isc-dhcp-server /etc/default/isc-dhcp-server.copia
+nano /etc/default/isc-dhcp-server
+
+ls
+
+/etc/netplan
+cp -p /etc/netplan/<lo que salga en el paso anterior> /etc/netplan/<lo que salga en el paso anterior>.copia
+nano /etc/netplan/<lo que salga en el paso anterior>
+
+netplan try en caso valido pasaremos al siguiente punto
+netplan apply
+service networking restart
+cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.copia
+nano /etc/dhcp/dhcpd.conf
+
+dejar todo y poner a
+partir de subnet
+cambian en la 3 linea
+la segunda ip el 3
+por un 4
+
+service isc-dhcp-
+server restart
+
+service isc-dhcp-
+server status en caso
+
+correcto pasar al
+paso siguiente sino
+revisar los anteriores
+
+CAMBIO A MAQUINA CLIENTE
+sudo -i
+apt install ifupdown
+ls /etc/netplan
+cp -p /etc/netplan/<lo que salga en el paso anterior> /etc/netplan/<lo que salga en el paso anterior>.copia
+nano /etc/netplan/<lo que salga en el paso anterior>
+netplan try en caso positivo siguiente paso
+netplan apply
+
+service networking
+restart
+ifconfig si tengo
+aplicados los valores
+que le configuramos
+al servicdor dhcp
+hemos terminado
