@@ -1,3 +1,0 @@
-127.0.0.1 api.cryptlex.com
-127.0.0.1 raw.githubusercontent.com
-127.0.0.1 lightburnsoftware.github.io
