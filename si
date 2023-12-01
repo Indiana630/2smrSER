@@ -1,0 +1,4 @@
+zip --encrypt nombredelnuevoarchivo.zip nombredlearchivoaencriptar
+gpg --symmetric “nombre del archivo”
+gpg --decrypt mensaje.gpg > mensajedesencriptado
+gpg -a--symmetric mensaje
