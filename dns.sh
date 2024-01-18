@@ -24,8 +24,8 @@ fi
 aplicarcambios() {
 if [ $respuesta = "y" ]
 then
-  /etc/bind/db.$dominio.nuevo >> /etc/bind/db.$dominio
-  /etc/bind/db.$inversa.nuevo >> /etc/bind/db.$inversa
+  cat /etc/bind/db.$dominio.nuevo >> /etc/bind/db.$dominio
+  cat /etc/bind/db.$inversa.nuevo >> /etc/bind/db.$inversa
   rm -f /etc/bind/db.$inversa.nuevo
   rm -f /etc/bind/db.$dominio.nuevo
   echo "Tus cambios han sido guardados, volvemos al menu"
@@ -58,7 +58,7 @@ cat > /etc/bind/db.$inversa.nuevo <<EOF
 $inversahost  IN  PTR  $dominioresolv
 EOF
 echo "La resolucion del nombreDNS ha sido correcta los parametros son:"
-echo "Dominio a resover: " $dominioresov
+echo "Dominio a resover: " $dominioresolv
 echo "Ip correspondiente: " $ipdominio
 echo "Ip(host): " $inversahost
 read -p "¿Deseas aplicar los cambios?(y/n): " respuesta
