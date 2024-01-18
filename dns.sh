@@ -1,5 +1,4 @@
 #!/bin/bash
-apt install bind9
 menu() {
 echo "1. Resolver nombreDNS"
 echo "2. Resolver nombreDNS a partir de uno ya existente"
