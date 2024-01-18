@@ -20,6 +20,7 @@ network:
        search: [$dominio]
 EOF
 netplan apply
+echo "Netplan configurado correctamente"
 cat > /etc/systemd/resolved.conf <<EOF
 [Resolve]
 DNS=$staticip
@@ -30,4 +31,23 @@ systemctl restart systemd-networkd
 systemctl restart systemd-resolved
 rm -f /etc/resolv.conf
 ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
-echo
+echo "Resolvconf operativo"
+cat > /etc/nsswitch.conf <<EOF
+passwd:         files systemd
+group:          files systemd
+shadow:         files
+gshadow:        files
+
+hosts:          dns files
+networks:       files
+
+protocols:      db files
+services:       db files
+ethers:         db files
+rpc:            db files
+
+netgroup:       nis
+EOF
+echo "Nsswitch configurado correctamente"
+cat > /etc/bind/named.conf.local
+ehco
