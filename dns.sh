@@ -11,6 +11,7 @@ elif [menuselect = 2]
 then
   resolvernombre
 elif [menuselect = 3]
+then
   echo "El servidor dns ha sido configurado al 100% y esta totalmente operativo, que lo disfrutes"
 else
   clear
