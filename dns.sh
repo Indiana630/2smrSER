@@ -8,7 +8,14 @@ echo "4. Salir"
 resolverip() {
 read -p "Dime el nombre de dominio a resolver: " dominioresolv
 read -p "Dime la ip correspondiente: " ipdominio
-
+read -p "Dime la ip correspondiente(la parte de hosts): " inversahost
+cat >> /etc/bind/db.$dominio.nuevo <<EOF
+$dominioresolv  IN  A  $ipdominio
+EOF
+cat >> /etc/bind/db.$inversa.nuevo <<EOF
+$inversahost  IN  PTR  $dominioresolv
+EOF
+menu
 }
 
 sed -i "s/dhcp4: yes/dhcp4: no/g" /etc/netplan/00-installer-config.yaml
@@ -84,7 +91,7 @@ $TLL    604800
                          604800 )       ; Negative Cache TLL
 ;
 ;
-                        IN      NS      servidor.$dominio
+  IN  NS  servidor.$dominio
 EOF
 cp /etc/bind/db.default /etc/bind/db.$dominio
 cp /etc/bind/db.default /etc/bind/db.$inversa
