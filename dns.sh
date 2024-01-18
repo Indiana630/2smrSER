@@ -2,20 +2,41 @@
 menu() {
 echo "1. Resolver nombreDNS"
 echo "2. Resolver nombreDNS a partir de uno ya existente"
-echo "3. Eliminar una configuracion creada"
-echo "4. Salir"
+echo "3. Salir"
 }
 resolverip() {
 read -p "Dime el nombre de dominio a resolver: " dominioresolv
 read -p "Dime la ip correspondiente: " ipdominio
 read -p "Dime la ip correspondiente(la parte de hosts): " inversahost
-cat >> /etc/bind/db.$dominio.nuevo <<EOF
+cat > /etc/bind/db.$dominio.nuevo <<EOF
 $dominioresolv  IN  A  $ipdominio
 EOF
-cat >> /etc/bind/db.$inversa.nuevo <<EOF
+cat > /etc/bind/db.$inversa.nuevo <<EOF
 $inversahost  IN  PTR  $dominioresolv
 EOF
+echo "La resolucion del nombreDNS ha sido correcta los parametros son:"
+echo "Dominio a resover: " $dominioresov
+echo "Ip correspondiente: " $ipdominio
+echo "Ip(host): " $inversahost
+read -p "¿Deseas aplicar los cambios?(y/n): " respuesta
+if respuesta = y
+then
+  /etc/bind/db.$dominio.nuevo >> /etc/bind/db.$dominio
+  /etc/bind/db.$inversa.nuevo >> /etc/bind/db.$inversa
+elif respuesta = n
+then
+echo "Tus cambios no seran guardados, volvemos al menu"
+sleep 3
+eli
+clear
 menu
+}
+resolvernombre() {
+read -p "Dime el nombre de dominio a resolver: " dominioresolv
+read -p "Dime la dominio ya existente: " dominiocor
+cat > /etc/bind/db.$dominio.nuevo <<EOF
+$dominioresolv  IN  CNAME  $ipdominio
+EOF
 }
 
 sed -i "s/dhcp4: yes/dhcp4: no/g" /etc/netplan/00-installer-config.yaml
@@ -82,6 +103,9 @@ EOF
 echo "Zonas configuradas correctamente"
 cp /etc/bind/db.local /etc/bind/db.default
 cat > /etc/bind/db.default <<EOF
+;
+;BIND data file for local loopback interface
+;
 $TLL    604800
 @       IN      SOA     servidor.$dominio root.$dominio (
                               2         ; Serial
@@ -95,5 +119,7 @@ $TLL    604800
 EOF
 cp /etc/bind/db.default /etc/bind/db.$dominio
 cp /etc/bind/db.default /etc/bind/db.$inversa
+rm -f /etc/bind/db.default
 clear
 echo "Vamos a configurar la resolucion de las ips"
+menu
