@@ -12,7 +12,7 @@ read -p "IP router: " gatewayip
 read -p "Servidores DNS: " nameserversip
 read -p "Dominio: " dominio
 echo
-cat > /etc/netplan/01-netcfg.yaml <<EOF
+cat > /etc/netplan/00-installer-config.yaml <<EOF
 network:
   version: 2
   ethernets:
