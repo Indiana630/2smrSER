@@ -13,6 +13,7 @@ then
   resolvernombre
 elif [ $menuselect = "3" ]
 then
+  clear
   echo "El servidor dns ha sido configurado al 100% y esta totalmente operativo, que lo disfrutes"
     rm -f /etc/bind/db.$inversa.nuevo
     rm -f /etc/bind/db.$dominio.nuevo
