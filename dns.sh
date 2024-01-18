@@ -61,4 +61,6 @@ zone "$inversa.in-addr-arpa" {
 };
 EOF
 echo "Zonas configuradas correctamente"
-
+cp /etc/bind/db.local /etc/bind/db.default
+cat > /etc/bind/db.default <<E
+echo "Vamos a configurar la resolucion de las ips"
