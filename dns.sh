@@ -160,7 +160,7 @@ cat > /etc/bind/db.default <<EOF
 ;
 ;BIND data file for local loopback interface
 ;
-"$TTL"    604800
+'$TTL'    604800
 @       IN      SOA     servidor.$dominio. root.$dominio. (
                               2         ; Serial
                          604800         ; Refresh
