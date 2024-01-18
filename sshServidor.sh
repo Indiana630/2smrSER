@@ -6,3 +6,4 @@ chmod go-rw /home/usuario/.ssh/authorized_keys
 echo "Reiniciando servicios..."
 systemctl restart ssh
 systemctl status ssh
+rm sshServidor.sh
