@@ -62,5 +62,16 @@ zone "$inversa.in-addr-arpa" {
 EOF
 echo "Zonas configuradas correctamente"
 cp /etc/bind/db.local /etc/bind/db.default
-cat > /etc/bind/db.default <<E
+cat > /etc/bind/db.default <<EOF
+$TLL    604800
+@       IN      SOA     servidor.$dominio root.$dominio (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TLL
+;
+;
+                        IN      NS      servidor.$dominio
+EOF
 echo "Vamos a configurar la resolucion de las ips"
