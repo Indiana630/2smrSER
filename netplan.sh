@@ -1,7 +1,5 @@
 #!/bin/bash
 #
-# Creates a backup
-cp /etc/netplan/00-installer-config.yaml /etc/netplan/00-installer-config.yaml.bk_`date +%Y%m%d%H%M`
 # Changes dhcp from 'yes' to 'no'
 sed -i "s/dhcp4: yes/dhcp4: no/g" /etc/netplan/00-installer-config.yaml
 # Retrieves the NIC information
