@@ -101,7 +101,7 @@ read -p "IP router: " gatewayip
 read -p "Servidores DNS: " nameserversip
 read -p "Dominio: " dominio
 read -p "Direccion inversa(parte de red): " inversa
-TTL = '$TTL'
+TTL='$TTL'
 cat > /etc/netplan/00-installer-config.yaml <<EOF
 network:
   version: 2
