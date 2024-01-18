@@ -4,13 +4,13 @@ echo "1. Resolver nombreDNS"
 echo "2. Resolver nombreDNS a partir de uno ya existente"
 echo "3. Salir"
 read menuselect
-if menuselect = 1
+if [menuselect = 1]
 then
   resolverip
-elif menuselect = 2
+elif [menuselect = 2]
 then
   resolvernombre
-elif menuselect = 3
+elif [menuselect = 3]
   echo "El servidor dns ha sido configurado al 100% y esta totalmente operativo, que lo disfrutes"
 else
   clear
@@ -21,7 +21,7 @@ fi
 
 
 aplicarcambios() {
-if respuesta = y
+if [respuesta = y]
 then
   /etc/bind/db.$dominio.nuevo >> /etc/bind/db.$dominio
   /etc/bind/db.$inversa.nuevo >> /etc/bind/db.$inversa
@@ -31,7 +31,7 @@ then
   sleep 3
   clear
   menu
-elif respuesta = n
+elif [respuesta = n]
 then
   rm -f /etc/bind/db.$inversa.nuevo
   rm -f /etc/bind/db.$dominio.nuevo
