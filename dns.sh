@@ -99,6 +99,7 @@ read -p "IP Estática: " staticip
 read -p "IP router: " gatewayip
 read -p "Servidores DNS: " nameserversip
 read -p "Dominio: " dominio
+read -p "Direccion inversa(parte de red): " inversa
 cat > /etc/netplan/00-installer-config.yaml <<EOF
 network:
   version: 2
@@ -142,7 +143,6 @@ rpc:            db files
 netgroup:       nis
 EOF
 echo "Nsswitch configurado correctamente"
-read -p "Direccion inversa: " inversa
 cat > /etc/bind/named.conf.local <<EOF
 zone "$dominio" {
         type master;
@@ -174,6 +174,7 @@ EOF
 cp /etc/bind/db.default /etc/bind/db.$dominio
 cp /etc/bind/db.default /etc/bind/db.$inversa
 rm -f /etc/bind/db.default
+sleep 3
 clear
 echo "Vamos a configurar la resolucion de las ips"
 menu
