@@ -4,6 +4,28 @@ echo "1. Resolver nombreDNS"
 echo "2. Resolver nombreDNS a partir de uno ya existente"
 echo "3. Salir"
 }
+aplicarcambios() {
+if respuesta = y
+then
+  /etc/bind/db.$dominio.nuevo >> /etc/bind/db.$dominio
+  /etc/bind/db.$inversa.nuevo >> /etc/bind/db.$inversa
+  rm -f /etc/bind/db.$inversa.nuevo
+  rm -f /etc/bind/db.$dominio.nuevo
+  echo "Tus cambios han sido guardados, volvemos al menu"
+  sleep 3
+  clear
+  menu
+elif respuesta = n
+then
+  echo "Tus cambios no seran guardados, volvemos al menu"
+  sleep 3
+  clear
+  menu
+else
+  read -p "No me ha quedado claro, ¿puede repetir?(y/n): " respuesta
+  aplicarcambios
+fi
+}
 resolverip() {
 read -p "Dime el nombre de dominio a resolver: " dominioresolv
 read -p "Dime la ip correspondiente: " ipdominio
@@ -19,15 +41,7 @@ echo "Dominio a resover: " $dominioresov
 echo "Ip correspondiente: " $ipdominio
 echo "Ip(host): " $inversahost
 read -p "¿Deseas aplicar los cambios?(y/n): " respuesta
-if respuesta = y
-then
-  /etc/bind/db.$dominio.nuevo >> /etc/bind/db.$dominio
-  /etc/bind/db.$inversa.nuevo >> /etc/bind/db.$inversa
-elif respuesta = n
-then
-echo "Tus cambios no seran guardados, volvemos al menu"
-sleep 3
-eli
+aplicarcambios
 clear
 menu
 }
