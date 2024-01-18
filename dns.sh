@@ -3,7 +3,23 @@ menu() {
 echo "1. Resolver nombreDNS"
 echo "2. Resolver nombreDNS a partir de uno ya existente"
 echo "3. Salir"
+read menuselect
+if menuselect = 1
+then
+  resolverip
+elif menuselect = 2
+then
+  resolvernombre
+elif menuselect = 3
+  echo "El servidor dns ha sido configurado al 100% y esta totalmente operativo, que lo disfrutes"
+else
+  clear
+  echo "No te entiendo, repitamos"
+  menu
+fi
 }
+
+
 aplicarcambios() {
 if respuesta = y
 then
@@ -17,6 +33,8 @@ then
   menu
 elif respuesta = n
 then
+  rm -f /etc/bind/db.$inversa.nuevo
+  rm -f /etc/bind/db.$dominio.nuevo
   echo "Tus cambios no seran guardados, volvemos al menu"
   sleep 3
   clear
@@ -26,6 +44,8 @@ else
   aplicarcambios
 fi
 }
+
+
 resolverip() {
 read -p "Dime el nombre de dominio a resolver: " dominioresolv
 read -p "Dime la ip correspondiente: " ipdominio
@@ -42,15 +62,20 @@ echo "Ip correspondiente: " $ipdominio
 echo "Ip(host): " $inversahost
 read -p "¿Deseas aplicar los cambios?(y/n): " respuesta
 aplicarcambios
-clear
-menu
 }
+
+
 resolvernombre() {
 read -p "Dime el nombre de dominio a resolver: " dominioresolv
 read -p "Dime la dominio ya existente: " dominiocor
 cat > /etc/bind/db.$dominio.nuevo <<EOF
 $dominioresolv  IN  CNAME  $ipdominio
 EOF
+echo "La resolucion del nombreDNS ha sido correcta los parametros son:"
+echo "Dominio a resover: " $dominioresov
+echo "Dominio existente: " $dominiocor
+read -p "¿Deseas aplicar los cambios?(y/n): " respuesta
+aplicarcambios
 }
 
 sed -i "s/dhcp4: yes/dhcp4: no/g" /etc/netplan/00-installer-config.yaml
