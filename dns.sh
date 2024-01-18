@@ -94,13 +94,14 @@ read -p "¿Deseas aplicar los cambios?(y/n): " respuesta
 aplicarcambios
 }
 
+echo "Configurando Netplan..."
 sed -i "s/dhcp4: yes/dhcp4: no/g" /etc/netplan/00-installer-config.yaml
 nic=`ifconfig | awk 'NR==1{print $1}'`
-read -p "IP Estática: " staticip 
+read -p "IP Estática (IP/MASCARA): " staticip 
 read -p "IP router: " gatewayip
 read -p "Servidores DNS: " nameserversip
 read -p "Dominio: " dominio
-read -p "Direccion inversa(parte de red): " inversa
+read -p "Direccion estatica inversa(parte de red)  Ej. 2.0.10: " inversa
 TTL='$TTL'
 cat > /etc/netplan/00-installer-config.yaml <<EOF
 network:
