@@ -1,4 +1,5 @@
-INDICE
+ÍNDICE
+
 **Paquetes a instalar segun el servicio:**
 - Netplan: _N/A_
 - SSH: _N/A_
@@ -12,4 +13,5 @@ INDICE
   - DNS: _Administrador_
  
   Es importante asignar permisos al script que vayas a ejecutar con el siguiente comando:
+  
   sudo chmod +x [nombreScript].ssh
