@@ -1,4 +1,5 @@
 #!/bin/bash
+apt install bind9
 menu() {
 echo "1. Resolver nombreDNS"
 echo "2. Resolver nombreDNS a partir de uno ya existente"
@@ -7,7 +8,8 @@ echo "4. Salir"
 }
 resolverip() {
 read -p "Dime el nombre de dominio a resolver: " dominioresolv
-read -p "Dime la ip correspondiente: " ipdomio
+read -p "Dime la ip correspondiente: " ipdominio
+
 }
 
 sed -i "s/dhcp4: yes/dhcp4: no/g" /etc/netplan/00-installer-config.yaml
