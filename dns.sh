@@ -5,7 +5,6 @@ read -p "IP Estática: " staticip
 read -p "IP router: " gatewayip
 read -p "Servidores DNS: " nameserversip
 read -p "Dominio: " dominio
-echo
 cat > /etc/netplan/00-installer-config.yaml <<EOF
 network:
   version: 2
@@ -49,5 +48,17 @@ rpc:            db files
 netgroup:       nis
 EOF
 echo "Nsswitch configurado correctamente"
-cat > /etc/bind/named.conf.local
-ehco
+read -p "Direccion inversa: " inversa
+cat > /etc/bind/named.conf.local <<EOF
+zone "$dominio" {
+        type master;
+        file "/etc/bind/db.$dominio";
+};
+
+zone "$inversa.in-addr-arpa" {
+        type master;
+        file "etc/bind/db.$inversa";
+};
+EOF
+echo "Zonas configuradas correctamente"
+
