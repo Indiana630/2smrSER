@@ -1,6 +1,6 @@
 #!/bin/bash
 menu() {
-Menu de resolucion DNS
+echo "Menu de resolucion DNS"
 echo "1. Resolver nombreDNS"
 echo "2. Resolver nombreDNS a partir de uno ya existente"
 echo "3. Salir"
