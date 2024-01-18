@@ -1,4 +1,15 @@
 #!/bin/bash
+menu() {
+echo "1. Resolver nombreDNS"
+echo "2. Resolver nombreDNS a partir de uno ya existente"
+echo "3. Eliminar una configuracion creada"
+echo "4. Salir"
+}
+resolverip() {
+read -p "Dime el nombre de dominio a resolver: " dominioresolv
+read -p "Dime la ip correspondiente: " ipdomio
+}
+
 sed -i "s/dhcp4: yes/dhcp4: no/g" /etc/netplan/00-installer-config.yaml
 nic=`ifconfig | awk 'NR==1{print $1}'`
 read -p "IP Estática: " staticip 
@@ -74,4 +85,7 @@ $TLL    604800
 ;
                         IN      NS      servidor.$dominio
 EOF
+cp /etc/bind/db.default /etc/bind/db.$dominio
+cp /etc/bind/db.default /etc/bind/db.$inversa
+clear
 echo "Vamos a configurar la resolucion de las ips"
