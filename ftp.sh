@@ -14,10 +14,10 @@ cat > /etc/vsftpd.conf <<EOF
 # capabilities.
 #
 # Allow anonymous FTP? (Beware - allowed by default if you comment this out).
-#anonymous_enable=NO
+anonymous_enable=NO
 #
 # Uncomment this to allow local users to log in.
-#local_enable=YES
+local_enable=YES
 #
 # Uncomment this to enable any form of FTP write command.
 write_enable=YES
