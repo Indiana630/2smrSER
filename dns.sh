@@ -84,7 +84,7 @@ resolvernombre() {
 read -p "Dime el nombre de dominio a resolver: " dominioresolv
 read -p "Dime la dominio ya existente: " dominiocor
 cat > /etc/bind/db.$dominio.nuevo <<EOF
-$dominioresolv  IN  CNAME  $ipdominio
+$dominioresolv  IN  CNAME  $dominiocor
 EOF
 echo "La resolucion del nombreDNS ha sido correcta los parametros son:"
 echo "Dominio a resover: " $dominioresolv
