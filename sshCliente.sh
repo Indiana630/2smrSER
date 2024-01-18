@@ -1,15 +1,9 @@
 #!/bin/bash
+read -p "IP servidor: " ipserver
 ssh-keygen -t rsa
 scp /home/usuario/.ssh/authorized_keys usuario@$ipserver:/home/usuario/.ssh
-cat /home/usuario/.ssh/id_rsa.pub >> /home/usuario/.ssh/authorized_keys
-chmod go-rw /home/usuario/.ssh/authorized_keys
-echo "Archivo de autorizaciones creado correctamente, copiando al servidor..."
-read -p "IP servidor: " ipserver
-scp /home/usuario/.ssh/authorized_keys usuario@$ipserver:/home/usuario/.ssh
-echo "Claves injectadas al servidor correctamente"
-echo "Conectando con el servidor y reiniciando servicios..."
 scp /home/usuario/.ssh/sshServidor.sh usuario@$ipserver:/home/usuario/
+echo "Archivo de autorizaciones creado correctamente, porfavor continue en el servidor..."
+echo "Conectando con el servidor..."
 ssh usuario@$ipserver
-
-exit
 echo "SSH configurado satisfactoriamente"
