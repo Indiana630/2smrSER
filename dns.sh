@@ -1,5 +1,6 @@
 #!/bin/bash
 menu() {
+Menu de resolucion DNS
 echo "1. Resolver nombreDNS"
 echo "2. Resolver nombreDNS a partir de uno ya existente"
 echo "3. Salir"
@@ -13,6 +14,8 @@ then
 elif [ $menuselect = "3" ]
 then
   echo "El servidor dns ha sido configurado al 100% y esta totalmente operativo, que lo disfrutes"
+    rm -f /etc/bind/db.$inversa.nuevo
+    rm -f /etc/bind/db.$dominio.nuevo
 else
   clear
   echo "No te entiendo, repitamos"
@@ -24,14 +27,25 @@ fi
 aplicarcambios() {
 if [ $respuesta = "y" ]
 then
-  cat /etc/bind/db.$dominio.nuevo >> /etc/bind/db.$dominio
-  cat /etc/bind/db.$inversa.nuevo >> /etc/bind/db.$inversa
-  rm -f /etc/bind/db.$inversa.nuevo
-  rm -f /etc/bind/db.$dominio.nuevo
-  echo "Tus cambios han sido guardados, volvemos al menu"
-  sleep 3
-  clear
-  menu
+  if [ $menuselect = "1" ]
+  then
+    cat /etc/bind/db.$dominio.nuevo >> /etc/bind/db.$dominio
+    cat /etc/bind/db.$inversa.nuevo >> /etc/bind/db.$inversa
+    rm -f /etc/bind/db.$inversa.nuevo
+    rm -f /etc/bind/db.$dominio.nuevo
+    echo "Tus cambios han sido guardados, volvemos al menu"
+    sleep 3
+    clear
+    menu
+  elif [ $menuselect = "2" ]
+  then
+    cat /etc/bind/db.$dominio.nuevo >> /etc/bind/db.$dominio
+    rm -f /etc/bind/db.$dominio.nuevo
+    echo "Tus cambios han sido guardados, volvemos al menu"
+    sleep 3
+    clear
+    menu
+  fi
 elif [ $respuesta = "n" ]
 then
   rm -f /etc/bind/db.$inversa.nuevo
