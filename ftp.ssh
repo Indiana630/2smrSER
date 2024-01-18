@@ -1,1 +1,3 @@
 #!/bin/bash
+sudo cp /etc/vsftpd.conf /etc/vsftpd.conf.orig
+echo "Copia de seguridad de la configuración SSH hecha"
