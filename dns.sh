@@ -87,7 +87,7 @@ cat > /etc/bind/db.$dominio.nuevo <<EOF
 $dominioresolv  IN  CNAME  $ipdominio
 EOF
 echo "La resolucion del nombreDNS ha sido correcta los parametros son:"
-echo "Dominio a resover: " $dominioresov
+echo "Dominio a resover: " $dominioresolv
 echo "Dominio existente: " $dominiocor
 read -p "¿Deseas aplicar los cambios?(y/n): " respuesta
 aplicarcambios
