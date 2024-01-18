@@ -25,7 +25,9 @@ echo "Establece una contraseña para el usuario cautivo"
 adduser cautivo
 echo "Establece una contraseña para el usuario libre"
 adduser libre
-cat libre >> /etc/vsftpd.chroot_list
+cat > /etc/vsftpd.chroot_list <<EOF
+libre
+EOF
 echo "Usuario libre configurado"
 systemctl restart vsftpd
 systemctl status vsftpd
