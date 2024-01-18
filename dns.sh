@@ -101,6 +101,7 @@ read -p "IP router: " gatewayip
 read -p "Servidores DNS: " nameserversip
 read -p "Dominio: " dominio
 read -p "Direccion inversa(parte de red): " inversa
+TTL = '$TTL'
 cat > /etc/netplan/00-installer-config.yaml <<EOF
 network:
   version: 2
@@ -161,7 +162,7 @@ cat > /etc/bind/db.default <<EOF
 ;
 ;BIND data file for local loopback interface
 ;
-'$TTL    604800
+$TTL    604800
 @       IN      SOA     servidor.$dominio. root.$dominio. (
                               2         ; Serial
                          604800         ; Refresh
