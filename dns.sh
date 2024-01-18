@@ -160,8 +160,8 @@ cat > /etc/bind/db.default <<EOF
 ;
 ;BIND data file for local loopback interface
 ;
-$TLL    604800
-@       IN      SOA     servidor.$dominio root.$dominio (
+"$TTL"    604800
+@       IN      SOA     servidor.$dominio. root.$dominio. (
                               2         ; Serial
                          604800         ; Refresh
                           86400         ; Retry
@@ -169,7 +169,7 @@ $TLL    604800
                          604800 )       ; Negative Cache TLL
 ;
 ;
-  IN  NS  servidor.$dominio
+  IN  NS  servidor.$dominio.
 EOF
 cp /etc/bind/db.default /etc/bind/db.$dominio
 cp /etc/bind/db.default /etc/bind/db.$inversa
