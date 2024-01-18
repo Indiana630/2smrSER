@@ -15,6 +15,7 @@ network:
   version: 2
   ethernets:
     $nic
+      dhcp4: false
       addresses:
       - $staticip
       gateway4: $gatewayip
