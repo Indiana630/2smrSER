@@ -1,4 +1,19 @@
 #!/bin/bash
+clear
+echo -e "\e[1;32m"
+echo "Realizado por Pepe y Dario"
+echo " INSTALACION SERVICIO FTP  V.1 "
+echo "1. Instalar servicio"
+echo "2. Configurar servicio"
+echo "3. Crear usuario libre"
+echo "4. Salir"
+echo -n "Escoger opcion: "
+read opcion
+case $opcion in
+1) echo "Instalando vsftpd.."
+sudo apt install vsftpd
+;;
+2) echo "Configurando vsftpd..."
 sudo cp /etc/vsftpd.conf /etc/vsftpd.conf.orig
 echo "Copia de seguridad de la configuración SSH hecha"
 rm /etc/vsftpd.conf
@@ -126,15 +141,18 @@ listen=YES
 pam_service_name=vsftpd
 allow_writeable_chroot=YES
 EOF
-echo "Archivo nuevo de configuración creado."
-echo "Establece una contraseña para el usuario cautivo"
-adduser cautivo
-echo "Establece una contraseña para el usuario libre"
-adduser libre
-cat > /etc/vsftpd.chroot_list <<EOF
-libre
-EOF
-echo "Usuario libre configurado"
 systemctl restart vsftpd
 systemctl status vsftpd
-echo "Servicio FTP configurado con un usuario llamado libre con acceso a raiz y otro cautivo SATISFACTORIAMENTE"
+;;
+3) echo "Creando usuario libre"
+echo -n  "Nombre del usuario libre que desea crear: "
+read usuario
+adduser $usuario
+cat > /etc/vsftpd.chroot_list <<EOF
+$usuario
+EOF
+systemctl restart vsftpd
+systemctl status vsftpd
+echo "Usuario $usuario agregado como usuario libre."
+;;
+4)exit 0;;
