@@ -196,6 +196,7 @@ network:
        search: [$dominio]
 EOF
 netplan apply
+sleep 1
 echo "Netplan operativo"
 sleep 2
 clear
@@ -210,6 +211,7 @@ systemctl restart systemd-networkd
 systemctl restart systemd-resolved
 rm -f /etc/resolv.conf
 ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+sleep 1
 echo "Resolvconf operativo"
 sleep 2
 clear
@@ -230,6 +232,7 @@ rpc:            db files
 
 netgroup:       nis
 EOF
+sleep 1
 echo "Nsswitch operativo"
 sleep 2
 clear
@@ -245,6 +248,7 @@ zone "$inversa.in-addr.arpa" {
         file "/etc/bind/db.$inversa";
 };
 EOF
+sleep 1
 echo "Zonas operativas"
 cp /etc/bind/db.local /etc/bind/db.default
 cat > /etc/bind/db.default <<EOF
