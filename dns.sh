@@ -14,9 +14,7 @@ then
 elif [ $menuselect = "3" ]
 then
   clear
-  echo "El servidor dns ha sido configurado al 100% y esta totalmente operativo, que lo disfrutes"
-    rm -f /etc/bind/db.$inversa.nuevo
-    rm -f /etc/bind/db.$dominio.nuevo
+  echo "El servidor dns ha sido configurado al 100%, pero se recomiendo hacer comandos de comprobacion"
 else
   clear
   echo "No te entiendo, repitamos"
@@ -35,7 +33,7 @@ then
     rm -f /etc/bind/db.$inversa.nuevo
     rm -f /etc/bind/db.$dominio.nuevo
     echo "Tus cambios han sido guardados, volvemos al menu"
-    sleep 3
+    sleep 2
     clear
     menu
   elif [ $menuselect = "2" ]
@@ -43,18 +41,28 @@ then
     cat /etc/bind/db.$dominio.nuevo >> /etc/bind/db.$dominio
     rm -f /etc/bind/db.$dominio.nuevo
     echo "Tus cambios han sido guardados, volvemos al menu"
-    sleep 3
+    sleep 2
     clear
     menu
   fi
 elif [ $respuesta = "n" ]
 then
-  rm -f /etc/bind/db.$inversa.nuevo
-  rm -f /etc/bind/db.$dominio.nuevo
-  echo "Tus cambios no seran guardados, volvemos al menu"
-  sleep 3
-  clear
-  menu
+  if [ $menuselect = "1" ]
+  then
+    rm -f /etc/bind/db.$inversa.nuevo
+    rm -f /etc/bind/db.$dominio.nuevo
+    echo "Tus cambios no han sido guardados, volvemos al menu"
+    sleep 2
+    clear
+    menu
+  elif [ $menuselect = "2" ]
+  then
+    rm -f /etc/bind/db.$dominio.nuevo
+    echo "Tus cambios no han sido guardados, volvemos al menu"
+    sleep 2
+    clear
+    menu
+  fi
 else
   read -p "No me ha quedado claro, ¿puede repetir?(y/n): " respuesta
   aplicarcambios
@@ -181,3 +189,4 @@ sleep 3
 clear
 echo "Vamos a configurar la resolucion de las ips"
 menu
+systemctl restart bind9
