@@ -1,5 +1,4 @@
 #!/bin/bash
-menu
 menu() {
 clear
 echo "Realizado por Pepe y Dario"
@@ -107,7 +106,7 @@ connect_from_port_20=YES
 # It is recommended that you define on your system a unique user which the
 # ftp server can use as a totally isolated and unprivileged user.
 #nopriv_user=ftpsecure
-#
+#menu
 # Enable this and the server will recognise asynchronous ABOR requests. Not
 # recommended for security (the code is non-trivial). Not enabling it,
 # however, may confuse older FTP clients.
@@ -179,10 +178,13 @@ adduser $usuario
 cat > /etc/vsftpd.chroot_list <<EOF
 $usuario
 EOF
-systemctl restart vsftpd
+systemctl restart vsmenuftpd
 systemctl status vsftpd
 wait 2
 clear
 echo "Usuario $usuario agregado como usuario libre."
 menu
 }
+
+echo "Realizado por Pepe y Dario"
+menu
