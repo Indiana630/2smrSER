@@ -158,15 +158,29 @@ dominio
 fi
 }
 
-echo "Configurando Netplan..."
-sed -i "s/dhcp4: yes/dhcp4: no/g" /etc/netplan/00-installer-config.yaml
-nic=`ifconfig | awk 'NR==1{print $1}'`
-read -p "IP Estática Ej. 192.168.100.10/24: " staticip 
-read -p "IP router: " gatewayip
-read -p "Servidores DNS: " nameserversip
-read -p "Dominio: " dominio
+inversa() {
 read -p "Direccion estatica inversa(parte de red)  Ej. 100.168.192: " inversa
+read -p "¿Estas seguro?(y/n)" resp
+if [ $resp = "y" ]
+then
+echo "OK"
+elif [ $resp = "n" ]
+then
+inversa
+else
+inversa
+fi
+}
+
 TTL='$TTL'
+
+echo "Configurando Netplan..."
+nic=`ifconfig | awk 'NR==1{print $1}'`
+staticip
+gatewayip
+nameserversip
+dominio
+inversa
 cat > /etc/netplan/00-installer-config.yaml <<EOF
 network:
   version: 2
