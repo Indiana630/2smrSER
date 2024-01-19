@@ -1,7 +1,63 @@
 #!/bin/bash
+staticip() {
+read -p "IP Estática: " staticip
+read -p "¿Estas seguro?(y/n)" resp
+if [ $resp = "y" ]
+then
+echo "OK"
+elif [ $resp = "n" ]
+then
+staticip
+else
+staticip
+fi
+}
+
+gatewayip() {
+read -p "IP router: " gatewayip
+read -p "¿Estas seguro?(y/n)" resp
+if [ $resp = "y" ]
+then
+echo "OK"
+elif [ $resp = "n" ]
+then
+gatewayip
+else
+gatewayip
+fi
+}
+
+nameserversip() {
+read -p "Servidores DNS: " nameserversip
+read -p "¿Estas seguro?(y/n)" resp
+if [ $resp = "y" ]
+then
+echo "OK"
+elif [ $resp = "n" ]
+then
+nameserversip
+else
+nameserversip
+fi
+}
+
+dominio() {
+read -p "Dominio: " dominio
+read -p "¿Estas seguro?(y/n)" resp
+if [ $resp = "y" ]
+then
+echo "OK"
+elif [ $resp = "n" ]
+then
+dominio
+else
+dominio
+fi
+}
+
 netplan() {
 read -p "¿Quieres DHCP activo?(y/n): " dhcp
-if $dhcp = y
+if [ $dhcp = y ]
 then
 cat > /etc/netplan/00-installer-config.yaml <<EOF
 network:
@@ -13,10 +69,10 @@ EOF
 sudo netplan apply
 elif $dhcp = n
 then
-read -p "IP Estática: " staticip 
-read -p "IP router: " gatewayip
-read -p "Servidores DNS: " nameserversip
-read -p "Dominio: " dominio
+staticip
+gatewayip
+nameserversip
+dominio
 echo
 cat > /etc/netplan/00-installer-config.yaml <<EOF
 network:
@@ -33,6 +89,8 @@ network:
 EOF
 sudo netplan apply
 else
+clear
+echo "Repitelo, no se te entiende"
 netplan
 fi
 }
