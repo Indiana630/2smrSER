@@ -1,6 +1,5 @@
 #!/bin/bash
 menu() {
-clear
 echo "Realizado por Pepe y Dario"
 echo " INSTALACION SERVICIO FTP  V.1 "
 echo "1. Instalar servicio"
@@ -172,6 +171,7 @@ EOF
 systemctl restart vsftpd
 systemctl status vsftpd
 clear
+sleep 2
 echo "Configuracion aplicada correctamente..."
 menu
 }
@@ -200,4 +200,5 @@ menu
 }
 
 echo "Realizado por Pepe y Dario"
+clear
 menu
