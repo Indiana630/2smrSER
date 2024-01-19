@@ -1,10 +1,18 @@
 #!/bin/bash
-#
-# Changes dhcp from 'yes' to 'no'
-sed -i "s/dhcp4: yes/dhcp4: no/g" /etc/netplan/00-installer-config.yaml
-# Retrieves the NIC information
-nic=`ifconfig | awk 'NR==1{print $1}'`
-# Ask for input on network configuration
+netplan() {
+read -p "¿Quieres DHCP activo?(y/n): " dhcp
+if $dhcp = y
+then
+cat > /etc/netplan/00-installer-config.yaml <<EOF
+network:
+  version: 2
+  ethernets:
+    $nic
+      dhcp4: true
+EOF
+sudo netplan apply
+elif $dhcp = n
+then
 read -p "IP Estática: " staticip 
 read -p "IP router: " gatewayip
 read -p "Servidores DNS: " nameserversip
@@ -24,5 +32,10 @@ network:
        search: [$dominio]
 EOF
 sudo netplan apply
+else
+netplan
+fi
+}
+netplan
 echo "==========================="
 echo
