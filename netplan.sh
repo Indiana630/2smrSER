@@ -97,4 +97,4 @@ fi
 nic=`ifconfig | awk 'NR==1{print $1}'`
 netplan
 echo "==========================="
-echo
+echo "Netplan configurado"
