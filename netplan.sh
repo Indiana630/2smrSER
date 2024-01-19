@@ -67,7 +67,7 @@ network:
       dhcp4: true
 EOF
 sudo netplan apply
-elif $dhcp = n
+elif [ $dhcp = n ]
 then
 staticip
 gatewayip
