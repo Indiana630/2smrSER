@@ -160,9 +160,9 @@ zone "$dominio" {
         file "/etc/bind/db.$dominio";
 };
 
-zone "$inversa.in-addr-arpa" {
+zone "$inversa.in-addr.arpa" {
         type master;
-        file "etc/bind/db.$inversa";
+        file "/etc/bind/db.$inversa";
 };
 EOF
 echo "Zonas configuradas correctamente"
