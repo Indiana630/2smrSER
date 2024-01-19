@@ -1,4 +1,11 @@
 #!/bin/bash
+instalarservicio() {
+echo "Instalando bind"
+apt update
+apt install bind9
+echo "Servicio instalado correctamente"
+}
+
 menu() {
 echo "Menu de resolucion DNS"
 echo "1. Resolver nombreDNS"
@@ -176,8 +183,15 @@ fi
 
 TTL='$TTL'
 
+read -p "¿Quieres instalar el servicio bind? Si ya lo tienes instalado no es necesario(y/n): " respu
+if [ $respu = y ]
+then
 clear
-echo "Configurando Netplan..."
+instalarservicio
+fi
+sleep 2
+clear
+echo "Configurando Netplan"
 nic=`ifconfig | awk 'NR==1{print $1}'`
 staticip
 gatewayip
