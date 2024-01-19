@@ -1,6 +1,6 @@
 #!/bin/bash
 staticip() {
-read -p "IP Estática: " staticip
+read -p "IP Estática Ej. 192.168.100.10/24: " staticip
 read -p "¿Estas seguro?(y/n)" resp
 if [ $resp = "y" ]
 then
