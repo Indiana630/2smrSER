@@ -6,7 +6,8 @@ echo " INSTALACION SERVICIO FTP  V.1 "
 echo "1. Instalar servicio"
 echo "2. Configurar servicio"
 echo "3. Crear usuario libre"
-echo "4. Salir"
+echo "4. Crear usuario cautivo"
+echo "5. Salir"
 echo -n "Escoger opcion: "
 read opcion
 if [  $opcion = "1" ]
@@ -19,6 +20,9 @@ elif [ $opcion = "3" ]
 then
   crearUsuario
 elif [ $opcion = "4" ]
+then
+  crearUsuCau
+elif [ $opcion = "5" ]
 then
   echo "Saliendo del programa..."
 else
@@ -184,6 +188,14 @@ systemctl status vsftpd
 wait 2
 clear
 echo "Usuario $usuario agregado como usuario libre."
+menu
+}
+
+crearUsuCau() {
+echo -n "Indique el nombre de usuario cautivo que desea asignar: "
+read usuarioC
+adduser $usuarioC
+echo "Usuario $usuarioC agregado como usuario libre."
 menu
 }
 
