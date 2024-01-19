@@ -19,6 +19,7 @@ elif [ $opcion = "3" ]
 then
   crearUsuario
 elif [ $opcion = "4" ]
+then
   echo "Saliendo del programa..."
 else
   clear
