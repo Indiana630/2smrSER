@@ -71,6 +71,7 @@ fi
 
 
 resolverip() {
+clear
 read -p "Dime el nombre de dominio a resolver: " dominioresolv
 read -p "Dime la ip correspondiente: " ipdominio
 read -p "Dime la ip correspondiente(la parte de hosts): " inversahost
@@ -90,6 +91,7 @@ aplicarcambios
 
 
 resolvernombre() {
+clear
 read -p "Dime el nombre de dominio a resolver: " dominioresolv
 read -p "Dime la dominio ya existente: " dominiocor
 cat > /etc/bind/db.$dominio.nuevo <<EOF
