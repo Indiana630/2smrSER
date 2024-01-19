@@ -168,7 +168,7 @@ EOF
 systemctl restart vsftpd
 systemctl status vsftpd
 clear
-echo "COnfiguracion aplicada correctamente..."
+echo "Configuracion aplicada correctamente..."
 menu
 }
 
