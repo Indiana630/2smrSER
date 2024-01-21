@@ -59,7 +59,7 @@ dns() {
     echo "1) DNS CLIENTE"
     echo "2) DNS SERVIDOR"
     echo -n "Escoje una opcion: "
-    read -n opcionDNS
+    read opcionDNS
     sleep 1
 
     if [ $opcionDNS == "1"]
