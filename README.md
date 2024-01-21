@@ -14,6 +14,6 @@
  
   Es importante asignar permisos al script que vayas a ejecutar con el siguiente comando:
   
-  sudo chmod +x [nombreScript].ssh
+  sudo chmod +x [nombreScript].sh
 
 Realizado por Pepe Cabeza y Darío Moreno
