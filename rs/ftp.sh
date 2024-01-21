@@ -199,7 +199,7 @@ echo "Usuario $usuarioC agregado como usuario libre."
 menu
 }
 
-sudo su
+
 echo "Realizado por Pepe y Dario"
 clear
 menu
