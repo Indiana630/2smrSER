@@ -183,6 +183,7 @@ fi
 
 TTL='$TTL'
 
+sudo su
 read -p "¿Quieres instalar el servicio bind? Si ya lo tienes instalado no es necesario(y/n): " respu
 if [ $respu = y ]
 then
