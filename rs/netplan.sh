@@ -94,6 +94,8 @@ echo "Repitelo, no se te entiende"
 netplan
 fi
 }
+
+sudo su
 nic=`ifconfig | awk 'NR==1{print $1}'`
 netplan
 echo "==========================="
