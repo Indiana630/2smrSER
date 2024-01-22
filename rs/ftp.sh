@@ -41,7 +41,7 @@ menu
 }
 
 confServicio() {
-sudo cp /etc/vsftpd.conf /etc/vsftpd.conf.orig
+cp /etc/vsftpd.conf /etc/vsftpd.conf.orig
 echo "Copia de seguridad de la configuración SSH hecha"
 rm /etc/vsftpd.conf
 cat > /etc/vsftpd.conf <<EOF
