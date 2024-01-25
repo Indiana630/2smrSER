@@ -1,26 +1,60 @@
 #!/bin/bash
-echo "Configurando Netplan..."
-sed -i "s/dhcp4: yes/dhcp4: no/g" /etc/netplan/01-network-manager-all.yaml
-nic=`ifconfig | awk 'NR==1{print $1}'`
-read -p "IP Estática Ej. 192.168.100.10/24: " staticip 
+staticip() {
+read -p "IP Estática Ej. 192.168.100.10/24: " staticip
+read -p "¿Estas seguro?(y/n)" resp
+if [ $resp = "y" ]
+then
+echo "OK"
+elif [ $resp = "n" ]
+then
+staticip
+else
+staticip
+fi
+}
+
+gatewayip() {
 read -p "IP router: " gatewayip
+read -p "¿Estas seguro?(y/n)" resp
+if [ $resp = "y" ]
+then
+echo "OK"
+elif [ $resp = "n" ]
+then
+gatewayip
+else
+gatewayip
+fi
+}
+
+nameserversip() {
 read -p "Servidores DNS: " nameserversip
+read -p "¿Estas seguro?(y/n)" resp
+if [ $resp = "y" ]
+then
+echo "OK"
+elif [ $resp = "n" ]
+then
+nameserversip
+else
+nameserversip
+fi
+}
+
+dominio() {
 read -p "Dominio: " dominio
-TTL='$TTL'
-cat > /etc/netplan/01-network-manager-all.yaml <<EOF
-network:
-  version: 2
-  ethernets:
-    $nic
-      dhcp4: false
-      addresses:
-      - $staticip
-      gateway4: $gatewayip
-      nameservers:
-       addresses: [$nameserversip]
-       search: [$dominio]
-EOF
-netplan apply
+read -p "¿Estas seguro?(y/n)" resp
+if [ $resp = "y" ]
+then
+echo "OK"
+elif [ $resp = "n" ]
+then
+dominio
+else
+dominio
+fi
+}
+
 echo "Netplan configurado correctamente"
 cat > /etc/systemd/resolved.conf <<EOF
 [Resolve]
