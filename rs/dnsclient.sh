@@ -55,6 +55,25 @@ dominio
 fi
 }
 
+staticip
+gatewayip
+nameserversip
+dominio
+echo
+cat > /etc/netplan/00-installer-config.yaml <<EOF
+network:
+  version: 2
+  ethernets:
+    $nic
+      dhcp4: false
+      addresses:
+      - $staticip
+      gateway4: $gatewayip
+      nameservers:
+       addresses: [$nameserversip]
+       search: [$dominio]
+EOF
+sudo netplan apply
 echo "Netplan configurado correctamente"
 cat > /etc/systemd/resolved.conf <<EOF
 [Resolve]
