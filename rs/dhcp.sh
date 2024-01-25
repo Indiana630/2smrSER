@@ -12,9 +12,16 @@ clear
 echo "Servicio instalado con exito"
 menu
 elif [ menuresp = 2 ]
-  if [ adaptadores = 1 ]
+  if [ adaptadores != 1 or adaptadores != 2 ]
   then
-  
+  read -p "Cuantos adaptadores vas a usar 1 o 2" adaptadores
+  elif [ adaptadores = 1 ]
+  then
+  netplan1
+  elif [ adaptadores = 2 ]
+  then
+  netplan2
+  fi
 then
 
 }
