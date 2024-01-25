@@ -1,5 +1,6 @@
 #!/bin/bash
 menu() {
+echo "Realizado por Darío y Pepe"
 echo "1. Instalar servicio dhcp"
 echo "2. Configurar adactador de red (netplan)"
 echo "3. Configurar servicio dhcp"
