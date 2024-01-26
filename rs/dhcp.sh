@@ -36,6 +36,7 @@ fi
 
 conf1() {
 netplan1
+echo "Configurando interfaces"
 cat > /etc/default/isc-dhcp-server <<EOF
 # Defaults for isc-dhcp-server (sourced by /etc/init.d/isc-dhcp-server)
 
@@ -52,8 +53,13 @@ cat > /etc/default/isc-dhcp-server <<EOF
 
 # On what interfaces should the DHCP server (dhcpd) serve DHCP request?
 #       Separate multiple interfaces with spaces, e.g. "eth0 eth1".
-
+INTERFACESv4="$adapt1"
+INTERFACESv6=""
 EOF
+sleep 1
+echo "Interfaces configuradas"
+sleep 2
+clear
 }
 
 netplan1() {
@@ -61,12 +67,13 @@ staticip1
 gatewayip1
 nameserversip1
 dominio1
-echo
+clear
+echo "Configurando netplan"
 cat > /etc/netplan/00-installer-config.yaml <<EOF
 network:
   version: 2
   ethernets:
-    $nic
+    $adapt1
       dhcp4: false
       addresses:
       - $staticip
@@ -76,7 +83,10 @@ network:
        search: [$dominio]
 EOF
 sudo netplan apply
-echo "Netplan configurado correctamente"
+sleep 1
+echo "Netplan configurado"
+sleep 2
+clear
 }
 
 staticip1() {
