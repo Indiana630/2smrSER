@@ -56,10 +56,10 @@ fi
 }
 
 netplan1() {
-staticip
-gatewayip
-nameserversip
-dominio
+staticip1
+gatewayip1
+nameserversip1
+dominio1
 echo
 cat > /etc/netplan/00-installer-config.yaml <<EOF
 network:
@@ -78,7 +78,7 @@ sudo netplan apply
 echo "Netplan configurado correctamente"
 }
 
-staticip() {
+staticip1() {
 read -p "IP Estática Ej. 192.168.100.10/24: " staticip
 read -p "¿Estas seguro?(y/n)" resp
 if [ $resp = "y" ]
@@ -92,7 +92,7 @@ staticip
 fi
 }
 
-gatewayip() {
+gatewayip1() {
 read -p "IP router: " gatewayip
 read -p "¿Estas seguro?(y/n)" resp
 if [ $resp = "y" ]
@@ -106,7 +106,7 @@ gatewayip
 fi
 }
 
-nameserversip() {
+nameserversip1() {
 read -p "Servidores DNS: " nameserversip
 read -p "¿Estas seguro?(y/n)" resp
 if [ $resp = "y" ]
@@ -120,7 +120,7 @@ nameserversip
 fi
 }
 
-dominio() {
+dominio1() {
 read -p "Dominio: " dominio
 read -p "¿Estas seguro?(y/n)" resp
 if [ $resp = "y" ]
