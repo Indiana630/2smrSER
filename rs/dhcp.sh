@@ -2,8 +2,7 @@
 menu() {
 echo "Realizado por Darío y Pepe"
 echo "1. Instalar servicio dhcp"
-echo "2. Configurar adactador de red (netplan)"
-echo "3. Configurar servicio dhcp"
+echo "2. Configurar servicio dhcp"
 read -p "Escoje una opccion" menuresp
 if [ menuresp = 1 ]
 then
@@ -27,10 +26,10 @@ then
     fi
   elif [ adaptadores = 1 ]
   then
-    netplan1
+    conf1
   elif [ adaptadores = 2 ]
   then
-    netplan2
+    conf2
   fi
 fi
 }
@@ -113,4 +112,4 @@ else
 dominio
 fi
 }
-
+menu
