@@ -46,6 +46,13 @@ cat > /etc/default/isc-dhcp-server <<EOF
 # Path to dhcpd's PID file (default: /var/run/dhcpd.pid).
 #DHCPDv4_PID=/var/run/dhcpd.pid
 #DHCPDv6_PID=/var/run/dhcpd6.pid
+# Additional options to start dhcpd with.
+#       Don't use options -cf or pf here; use DHCPD_CONF/ DHCPD_PID instead
+#OPTIONS=""
+
+# On what interfaces should the DHCP server (dhcpd) serve DHCP request?
+#       Separate multiple interfaces with spaces, e.g. "eth0 eth1".
+
 EOF
 }
 
