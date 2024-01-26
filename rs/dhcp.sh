@@ -4,30 +4,30 @@ echo "Realizado por Darío y Pepe"
 echo "1. Instalar servicio dhcp"
 echo "2. Configurar servicio dhcp"
 read -p "Escoje una opccion" menuresp
-if [ menuresp = 1 ]
+if [ $menuresp = 1 ]
 then
 apt update isc-dhcp-server
 apt install isc-dhcp-server
 clear
 echo "Servicio instalado con exito"
 menu
-elif [ menuresp = 2 ]
+elif [ $menuresp = 2 ]
 then
-  if [ adaptadores != 1 and adaptadores != 2 ]
+  if [ $adaptadores != 1 and $adaptadores != 2 ]
   then
     read -p "Cuantos adaptadores vas a usar 1 o 2" adaptadores
-    if [ adaptadores = 1 ]
+    if [ $adaptadores = 1 ]
     then
     read -p "¿Cual es el nombre del adaptador?Ej. enp0s3" adapt1
-    elif [ adaptadores = 2 ]
+    elif [ $adaptadores = 2 ]
     then
     read -p "¿Cal es el nombre del adaptador 1?Ej. enp0s3" adapt1
     read -p "¿Cal es el nombre del adaptador 2?Ej. enp0s8" adapt2
     fi
-  elif [ adaptadores = 1 ]
+  elif [ $adaptadores = 1 ]
   then
     conf1
-  elif [ adaptadores = 2 ]
+  elif [ $adaptadores = 2 ]
   then
     conf2
   fi
@@ -60,7 +60,63 @@ sleep 1
 echo "Interfaces configuradas"
 sleep 2
 clear
+echo "Configurando dhcp"
+}
 
+ipdhcp1() {
+read -p "IP de red Ej. 192.168.100.0: " ipdhcp
+read -p "¿Estas seguro?(y/n)" resp
+if [ $resp = "y" ]
+then
+echo "OK"
+elif [ $resp = "n" ]
+then
+ipdhcp1
+else
+ipdhcp1
+fi
+}
+
+mascdhcp1() {
+read -p "Mascara de red Ej. 255.255.255.0: " mascdhcp
+read -p "¿Estas seguro?(y/n)" resp
+if [ $resp = "y" ]
+then
+echo "OK"
+elif [ $resp = "n" ]
+then
+mascdhcp1
+else
+mascdhcp1
+fi
+}
+
+gatedhcp1() {
+read -p "Ip router Ej. 192.168.100.1: " gatedhcp
+read -p "¿Estas seguro?(y/n)" resp
+if [ $resp = "y" ]
+then
+echo "OK"
+elif [ $resp = "n" ]
+then
+gatedhcp1
+else
+gatedhcp1
+fi
+}
+
+dnsdhcp1() {
+read -p "Dns primaro y secundario Ej. 192.168.100.1, 8.8.8.8: " dnsdhcp
+read -p "¿Estas seguro?(y/n)" resp
+if [ $resp = "y" ]
+then
+echo "OK"
+elif [ $resp = "n" ]
+then
+dnsdhcp1
+else
+dnsdhcp1
+fi
 }
 
 netplan1() {
