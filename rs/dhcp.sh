@@ -60,6 +60,7 @@ sleep 1
 echo "Interfaces configuradas"
 sleep 2
 clear
+
 }
 
 netplan1() {
