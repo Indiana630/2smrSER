@@ -61,6 +61,11 @@ echo "Interfaces configuradas"
 sleep 2
 clear
 echo "Configurando dhcp"
+ipdhcp1
+mascdhcp1
+gatedhcp1
+dnsdhcp1
+rangodhcp1
 }
 
 ipdhcp1() {
@@ -118,6 +123,8 @@ else
 dnsdhcp1
 fi
 }
+
+
 
 netplan1() {
 staticip1
