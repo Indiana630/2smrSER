@@ -32,26 +32,6 @@ then
   then
     netplan2
   fi
-elif [ menuresp = 3 ]
-then
-  if [ adaptadores != 1 and adaptadores != 2 ]
-  then
-    read -p "Cuantos adaptadores vas a usar 1 o 2" adaptadores
-    if [ adaptadores = 1 ]
-    then
-    read -p "¿Cual es el nombre del adaptador?Ej. enp0s3" adapt1
-    elif [ adaptadores = 2 ]
-    then
-    read -p "¿Cal es el nombre del adaptador 1?Ej. enp0s3" adapt1
-    read -p "¿Cal es el nombre del adaptador 2?Ej. enp0s8" adapt2
-    fi
-  elif [ adaptadores = 1 ]
-  then
-    conf1
-  elif [ adaptadores = 2 ]
-  then
-    conf2
-  fi
 fi
 }
 
