@@ -60,7 +60,7 @@ gatewayip
 nameserversip
 dominio
 echo
-cat > /etc/netplan/00-installer-config.yaml <<EOF
+cat > /etc/netplan/01-network-mamager-all.yaml <<EOF
 network:
   version: 2
   ethernets:
