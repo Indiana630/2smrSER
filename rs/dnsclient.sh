@@ -55,6 +55,7 @@ dominio
 fi
 }
 
+nic=`ifconfig | awk 'NR==1{print $1}'`
 staticip
 gatewayip
 nameserversip
