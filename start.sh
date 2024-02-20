@@ -62,15 +62,15 @@ dns() {
     read opcionDNS
     sleep 1
 
-    if [ $opcionDNS == "1"]
+    if [ $opcionDNS == "1" ]
     then
         clear 
         echo "Ejecutando configurador DNS Cliente...."
         ./rs/dnsclient.sh
-    elif [ $opcionDNS == "2"]
+    elif [ $opcionDNS == "2" ]
     then
         clear 
-        echo "Ejecutando configurador DNS Cliente...."
+        echo "Ejecutando configurador DNS Server...."
         ./rs/dns.sh
     else
         clear
