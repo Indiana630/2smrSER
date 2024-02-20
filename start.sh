@@ -35,21 +35,21 @@ fi
 ssh() {
     clear
     echo "Ejecutando netplan..."
-    ./rs/netplan.sh
+    ./sh/netplan.sh
     sleep 1
 }
 
 ssh() {
     clear
     echo "Ejecutando SSH..."
-    ./rs/sshCliente.sh
+    ./sh/sshCliente.sh
     sleep 1
 }
 
 ftp() {
     clear
     echo "Ejecutando FTP..."
-    ./rs/ftp.sh
+    ./sh/ftp.sh
     sleep 1
 }
 
@@ -66,12 +66,12 @@ dns() {
     then
         clear 
         echo "Ejecutando configurador DNS Cliente...."
-        ./rs/dnsclient.sh
+        ./sh/dnsclient.sh
     elif [ $opcionDNS == "2" ]
     then
         clear 
         echo "Ejecutando configurador DNS Server...."
-        ./rs/dns.sh
+        ./sh/dns.sh
     else
         clear
         echo "Opción incorrecta"
@@ -80,10 +80,10 @@ dns() {
 
 }
 
-chmod +x rs/dns.sh
-chmod +x rs/dnsclient.sh
-chmod +x rs/ftp.sh
-chmod +x rs/netplan.sh
+chmod +x sh/dns.sh
+chmod +x sh/dnsclient.sh
+chmod +x sh/ftp.sh
+chmod +x sh/netplan.sh
 chmod +x rs/sshCliente.sh
 chmod +x rs/sshServidor.sh
 menu
